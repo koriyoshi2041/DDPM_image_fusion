@@ -13,7 +13,7 @@ This repository extends the original [DDPM Inversion](https://github.com/inbarhu
 
 We've implemented robust image fusion functionality that allows blending two images in the editable DDPM noise space, producing semantically coherent results that preserve key features from both source images.
 
-![Image Fusion Example](https://i.imgur.com/3MaQyJS.png)
+> **Visual Effect**: The fusion produces seamless blends where key features from both source images are preserved. Unlike pixel-level blending, our noise-space fusion maintains semantic integrity and natural transitions between different elements of the images.
 
 **Key features:**
 - Four fusion modes:
@@ -93,3 +93,22 @@ Please refer to the [original paper](https://arxiv.org/abs/2307.10829) for more 
 
 1. Clone this repository
 2. Install dependencies
+3. Run one of the example commands above
+4. Check the documentation for detailed usage instructions
+
+## 🔗 Citation
+
+If you use this code in your research, please cite the original paper:
+
+```
+@article{hub2023edit,
+  title={An Edit Friendly DDPM Noise Space: Inversion and Manipulations},
+  author={Hub, Inbar and Hertz, Amir and Fuchs, Shai},
+  journal={arXiv preprint arXiv:2307.10829},
+  year={2023}
+}
+```
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
