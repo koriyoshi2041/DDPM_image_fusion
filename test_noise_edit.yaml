@@ -1,0 +1,12 @@
+  -
+    init_img:  /example_images/horse_mud.jpg
+    source_prompt: a photo of a horse in the mud
+    # 对于噪声空间编辑，target_prompts可以为空或使用原始提示词
+    target_prompts:
+    - a photo of a horse in the mud
+    
+  -
+    init_img:  /example_images/sketch_cat.jpg
+    source_prompt: a sketch of a cat
+    target_prompts:
+    - a sketch of a cat 
