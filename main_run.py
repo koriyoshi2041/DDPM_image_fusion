@@ -501,16 +501,16 @@ if __name__ == "__main__":
             # 加载第二张图像
             x0_second = load_512(second_image_path, *offsets, device)
             
-            # 获取第二张图像的提示词
-            prompt_second = current_image_data.get('source_prompt', "")  # 默认使用与第一张图相同的提示词
+            # 使用空提示词来代替实际提示词
+            empty_prompt = "a photo"  # 使用通用空提示词
             
             # VAE编码第二张图像
             with autocast("cuda"), inference_mode():
                 w0_second = (ldm_stable.vae.encode(x0_second).latent_dist.mode() * 0.18215).float()
                 
-            # 第二张图像的前向过程
+            # 第二张图像的前向过程 - 使用空提示词
             wt_second, zs_second, wts_second = inversion_forward_process(
-                ldm_stable, w0_second, etas=eta, prompt=prompt_second, 
+                ldm_stable, w0_second, etas=eta, prompt=empty_prompt, 
                 cfg_scale=cfg_scale_src, prog_bar=True, 
                 num_inference_steps=args.num_diffusion_steps
             )
@@ -528,8 +528,8 @@ if __name__ == "__main__":
             else:
                 xT_base = wts_second[args.num_diffusion_steps-args.skip]
             
-            # 使用哪个图像的提示词作为生成提示
-            generation_prompt = prompt_src if args.fusion_ratio <= 0.5 else prompt_second
+            # 使用空提示词作为生成提示
+            generation_prompt = empty_prompt
             
             # 反向过程生成融合图像
             controller = AttentionStore()

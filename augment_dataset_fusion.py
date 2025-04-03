@@ -119,8 +119,8 @@ def create_temp_yaml(img1_path, img2_path, temp_yaml_path):
     config = {
         "example1": {
             "init_image": img1_path,
-            "source_prompt": "image1",
-            "target_prompts": ["image1"]
+            "source_prompt": "a photo",
+            "target_prompts": ["a photo"]
         }
     }
     

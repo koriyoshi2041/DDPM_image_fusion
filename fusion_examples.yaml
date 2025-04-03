@@ -1,15 +1,11 @@
-  -
-    init_img:  /example_images/horse_mud.jpg
-    source_prompt: a photo of a horse in the mud
+example1:
+  init_image: /example_images/horse_mud.jpg
+  source_prompt: a photo
+  target_prompts:
+    - a photo
 
-    # 在融合模式中，target_prompts不会被使用
-    target_prompts:
-    - a photo of a horse in the mud
-    
-  -
-    init_img:  /example_images/sketch_cat.jpg
-    source_prompt: a sketch of a cat
-
-    # 在融合模式中，target_prompts不会被使用
-    target_prompts:
-    - a sketch of a cat 
+example2:
+  init_image: /example_images/sketch_cat.jpg
+  source_prompt: a photo
+  target_prompts:
+    - a photo 
