@@ -113,112 +113,89 @@ If you use this code for your research, please cite our paper:
 }
 ```
 
-# DDPM Image Fusion and Data Augmentation
+# DDPM图像融合与智能数据扩增
 
-This repository extends the original [DDPM Inversion](https://github.com/inbarhub/DDPM_inversion) work with powerful image fusion and similarity-based data augmentation capabilities that operate in the editable DDPM noise space. 
+本项目在DDPM可编辑噪声空间中实现了强大的图像融合与基于相似度的智能数据扩增功能。
 
-## 🔥 New Features
+## 🔥 主要功能
 
-### 1. Image Fusion in DDPM Noise Space
+### 1. DDPM噪声空间图像融合
 
-We've implemented robust image fusion functionality that allows blending two images in the editable DDPM noise space, producing semantically coherent results that preserve key features from both source images.
+我们实现了一种在DDPM可编辑噪声空间中进行图像融合的方法，能够生成语义连贯的结果，同时保留两张源图像的关键特征。
 
-![Image Fusion Example](https://i.imgur.com/3MaQyJS.png)
+![图像融合示例](https://i.imgur.com/3MaQyJS.png)
 
-**Key features:**
-- Four fusion modes:
-  - **Linear Fusion**: Simple weighted blending
-  - **Cross Fade**: Time-dependent gradual blending
-  - **Feature Selective Fusion**: Preserves dominant features from each image
-  - **Layer Selective Fusion**: Applies different strategies to different noise levels
+**核心特点:**
+- 四种融合模式:
+  - **线性融合 (Linear)**: 简单的加权混合
+  - **渐变融合 (Cross Fade)**: 时间步相关的渐进混合
+  - **特征选择性融合 (Feature Selective)**: 保留每张图像中的主要特征
+  - **层选择性融合 (Layer Selective)**: 对不同噪声层次应用不同的融合策略
 
-**Usage:**
+**使用方法:**
 ```bash
 python main_run.py --mode="image_fusion" --dataset_yaml="fusion_examples.yaml" --second_image="path/to/second/image.jpg" --fusion_ratio=0.5 --fusion_mode="linear"
 ```
 
-### 2. Similarity-Based Data Augmentation
+### 2. 基于相似度的智能数据扩增
 
-We've developed an intelligent data augmentation system that automatically detects similar images in a training dataset and fuses them to create semantically coherent augmented samples.
+我们开发了一套智能数据扩增系统，能够自动检测训练集中的相似图像并融合它们，创造语义连贯的扩增样本。
 
-**Key features:**
-- **Automatic similarity detection** using ResNet50 feature extraction
-- **Smart fusion** of only sufficiently similar images
-- **Batch processing** for efficient dataset augmentation
-- **Multiple fusion strategies** for diverse outputs
+**核心特点:**
+- **自动相似度检测**：使用ResNet50提取图像特征并计算相似度
+- **智能融合**：只融合足够相似的图像，避免生成混乱结果
+- **批量处理**：高效处理整个训练集
+- **多种融合策略**：支持多种融合模式，生成多样化输出
 
-**Usage:**
+**使用方法:**
 ```bash
 python augment_dataset_fusion.py --input_dir="training_images" --output_dir="augmented_dataset" --similarity_threshold=0.7
 ```
 
-## 📚 Documentation
+## 📚 文档
 
-We've added comprehensive documentation for all new features:
+项目包含以下详细文档:
 
-- [IMAGE_FUSION_README.md](IMAGE_FUSION_README.md) - Detailed guide on image fusion
-- [FUSION_AUGMENTATION_README.md](FUSION_AUGMENTATION_README.md) - Guide on similarity-based data augmentation
-- [PROJECT_CHANGES.md](PROJECT_CHANGES.md) - Complete record of all project modifications
+- [IMAGE_FUSION_README.md](IMAGE_FUSION_README.md) - 图像融合功能详细指南
+- [FUSION_AUGMENTATION_README.md](FUSION_AUGMENTATION_README.md) - 基于相似度的数据扩增指南
+- [PROJECT_CHANGES.md](PROJECT_CHANGES.md) - 项目修改完整记录
 
-## 🧠 Technical Details
+## 🧠 技术细节
 
-Our implementation leverages the unique properties of the DDPM editable noise space:
+我们的实现利用了DDPM可编辑噪声空间的独特特性:
 
-- **Statistical independence** between time steps allows for layered editing
-- **Controllable randomness** enables diverse output generation
-- **Structural preservation** ensures semantic coherence in fusion results
+- **时间步之间的统计独立性**：允许分层编辑
+- **可控的随机性**：能够生成多样化输出
+- **结构保留**：确保融合结果的语义连贯性
 
-The similarity detection system uses cosine similarity between feature vectors extracted by a pre-trained ResNet50 model, ensuring that only meaningfully similar images are fused.
+相似度检测系统使用预训练ResNet50模型提取的特征向量之间的余弦相似度，确保只有真正相似的图像才会被融合。
 
-## 🔍 Advantages Over Traditional Methods
+## 🔍 相比传统方法的优势
 
-- **Semantic understanding**: Preserves semantic information from both sources
-- **Natural transitions**: Avoids artifacts common in pixel-level blending
-- **Layered control**: Selectively fuses different feature levels
-- **Smart filtering**: Only fuses semantically similar images
-- **Diverse effects**: Multiple fusion modes for different creative needs
+- **语义理解**：保留源图像的语义信息
+- **自然过渡**：避免像素级混合常见的伪影
+- **分层控制**：选择性地融合不同特征层次
+- **智能筛选**：只融合语义相似的图像
+- **多样化效果**：多种融合模式满足不同创意需求
 
-## 🔄 Original DDPM Inversion Features
-
-This repository builds upon [DDPM Inversion](https://github.com/inbarhub/DDPM_inversion) which provides:
-
-- DDPM inversion technique for mapping images to noise space
-- Editable representations for manipulation without text prompts
-- Various noise-space editing operations (brightness, contrast, etc.)
-
-Please refer to the [original paper](https://arxiv.org/abs/2307.10829) for more details on the foundation technology.
-
-## 📋 Requirements
+## 📋 系统要求
 
 - Python 3.7+
 - PyTorch 1.7+
 - torchvision
-- scikit-learn (for similarity-based data augmentation)
+- scikit-learn (用于相似度计算)
 - PIL (Pillow)
 - numpy
 - tqdm
 - PyYAML
 
-## 🚀 Getting Started
+## 🚀 快速入门
 
-1. Clone this repository
-2. Install dependencies
-3. Run one of the example commands above
-4. Check the documentation for detailed usage instructions
+1. 克隆此仓库
+2. 安装依赖项
+3. 运行上述示例命令
+4. 查阅文档了解详细使用说明
 
-## 🔗 Citation
+## 📝 许可证
 
-If you use this code in your research, please cite the original paper:
-
-```
-@article{hub2023edit,
-  title={An Edit Friendly DDPM Noise Space: Inversion and Manipulations},
-  author={Hub, Inbar and Hertz, Amir and Fuchs, Shai},
-  journal={arXiv preprint arXiv:2307.10829},
-  year={2023}
-}
-```
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+本项目基于MIT许可证开源 - 详见LICENSE文件
