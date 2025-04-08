@@ -398,8 +398,8 @@ if __name__ == "__main__":
 
     # create scheduler
     # load diffusion model
-    model_id = "CompVis/stable-diffusion-v1-4"
-    # model_id = "stable_diff_local" # load local save of model (for internet problems)
+    # model_id = "CompVis/stable-diffusion-v1-4"
+    model_id = "./stable_diff_local"  # 使用本地保存的模型
 
     device = f"cuda:{args.device_num}"
 
